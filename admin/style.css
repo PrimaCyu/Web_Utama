@@ -1,0 +1,181 @@
+/* 🌈 Font & warna utama */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f6f8fb;
+  margin: 0;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* 🔷 Header */
+header {
+  background: linear-gradient(135deg, #007bff, #0056d2);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+header h1 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+header p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+/* 🧭 Navigasi (Top Navbar) */
+nav {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+nav a:hover,
+nav a.active {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 🧱 Konten utama */
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* 📋 Tabel */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table th {
+  background-color: #007bff !important;
+  color: white;
+  letter-spacing: 0.5px;
+}
+.table-hover tbody tr:hover {
+  background-color: #eef5ff;
+  transition: background 0.2s ease-in;
+}
+
+/* 💠 Tombol */
+.btn {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+.btn-warning {
+  color: #fff;
+  background-color: #f7b500;
+  border: none;
+}
+.btn-danger {
+  background-color: #e63946;
+  border: none;
+}
+
+/* 📜 Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  margin-top: 3rem;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+/* ✨ Animasi transisi */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+body.dark header {
+  background: linear-gradient(135deg, #202d63, #0d133b);
+}
+body.dark nav {
+  background-color: #2b2b2b;
+}
+body.dark nav a {
+  color: #e0e0e0;
+}
+body.dark nav a.active {
+  background-color: #4c7ef3;
+}
+body.dark main {
+  background-color: #2b2b2b;
+  box-shadow: none;
+}
+body.dark footer {
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    header p {
+        font-size: 0.85rem;
+    }
+    header {
+        padding: 1.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
