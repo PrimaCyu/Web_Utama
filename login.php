@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Jika sudah login, redirect ke halaman sesuai role
+
 if (isset($_SESSION['user_role'])) {
     if ($_SESSION['user_role'] === 'admin') {
         header('Location: admin/index.php');
@@ -12,7 +12,7 @@ if (isset($_SESSION['user_role'])) {
     }
 }
 
-// Koneksi database
+
 $koneksi = mysqli_connect("localhost", "root", "", "smsr_jaya");
 
 if (!$koneksi) {
@@ -22,15 +22,13 @@ if (!$koneksi) {
 $error = '';
 $role = isset($_POST['role']) ? $_POST['role'] : 'admin';
 
-// Fungsi untuk verifikasi password hash
+
 function verifyPassword($input_password, $hashed_password) {
-    // Jika password masih plain text (lama), kita verifikasi langsung
-    // Dan sekaligus update ke hash
     if (password_verify($input_password, $hashed_password)) {
         return true;
     }
     
-    // Fallback: jika password masih plain text
+  
     if ($input_password === $hashed_password) {
         return true;
     }
@@ -38,12 +36,12 @@ function verifyPassword($input_password, $hashed_password) {
     return false;
 }
 
-// Fungsi untuk hash password
+
 function hashPassword($password) {
     return password_hash($password, PASSWORD_DEFAULT);
 }
 
-// Proses login
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
     $password = $_POST['password'];
@@ -53,16 +51,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         $error = 'Username dan password harus diisi!';
     } else {
         if ($role === 'admin') {
-            // Login sebagai admin
             $query = "SELECT * FROM admin WHERE username = '$username'";
             $result = mysqli_query($koneksi, $query);
             
             if ($result && mysqli_num_rows($result) > 0) {
                 $admin = mysqli_fetch_assoc($result);
                 
-                // Verifikasi password dengan hash
+               
                 if (verifyPassword($password, $admin['password'])) {
-                    // Jika password masih plain text, update ke hash
+                    
                     if ($password === $admin['password']) {
                         $new_hashed_password = hashPassword($password);
                         $update_query = "UPDATE admin SET password = '$new_hashed_password' WHERE id_admin = {$admin['id_admin']}";
@@ -81,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 $error = 'Username admin tidak ditemukan!';
             }
         } elseif ($role === 'mpk') {
-            // Login sebagai MPK
+            
             $query = "SELECT m.*, k.nama_kelas 
                       FROM mpk m 
                       LEFT JOIN kelas k ON m.id_kelas = k.id_kelas 
@@ -91,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             if ($result && mysqli_num_rows($result) > 0) {
                 $mpk = mysqli_fetch_assoc($result);
                 
-                // Verifikasi password dengan hash
+                
                 if (verifyPassword($password, $mpk['password'])) {
-                    // Jika password masih plain text, update ke hash
+                  
                     if ($password === $mpk['password']) {
                         $new_hashed_password = hashPassword($password);
                         $update_query = "UPDATE mpk SET password = '$new_hashed_password' WHERE id_mpk = {$mpk['id_mpk']}";
@@ -201,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Role selector functionality
+        
         document.querySelectorAll('.role-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
@@ -210,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             });
         });
 
-        // Toggle password visibility
+        
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordInput = document.querySelector('input[name="password"]');
             const icon = this.querySelector('i');

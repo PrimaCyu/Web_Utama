@@ -1,12 +1,12 @@
 <?php
 session_start();
-// Redirect jika bukan MPK
+
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'mpk') {
     header('Location: login.php');
     exit();
 }
 
-// Koneksi database
+
 $koneksi = mysqli_connect("localhost", "root", "", "smsr_jaya");
 
 if (!$koneksi) {
@@ -113,7 +113,7 @@ if (!$koneksi) {
             </div>
 
             <?php
-            // Query untuk data histori MPK
+            
             $month = $_GET['month'] ?? date('m');
             $year = $_GET['year'] ?? date('Y');
             $siswa_filter = $_GET['siswa'] ?? '';
@@ -140,7 +140,7 @@ if (!$koneksi) {
             $total_records = mysqli_num_rows($result);
             ?>
 
-            <!-- Data Histori -->
+
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">

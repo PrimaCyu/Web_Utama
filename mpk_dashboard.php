@@ -1,19 +1,19 @@
 <?php
 session_start();
-// Redirect jika bukan MPK
+
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'mpk') {
     header('Location: login.php');
     exit();
 }
 
-// Koneksi database
+
 $koneksi = mysqli_connect("localhost", "root", "", "smsr_jaya");
 
 if (!$koneksi) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
 
-// Fungsi untuk mendapatkan data siswa di kelas MPK
+
 function getSiswaByKelas($koneksi, $id_kelas)
 {
     $query = "SELECT s.*, k.nama_kelas 
@@ -24,7 +24,7 @@ function getSiswaByKelas($koneksi, $id_kelas)
     return mysqli_query($koneksi, $query);
 }
 
-// Fungsi untuk mendapatkan absensi hari ini
+
 function getAbsensiHariIni($koneksi, $id_siswa)
 {
     $query = "SELECT * FROM absensi 
@@ -35,14 +35,14 @@ function getAbsensiHariIni($koneksi, $id_siswa)
     return mysqli_fetch_assoc($result);
 }
 
-// Fungsi untuk menyimpan absensi
+
 function simpanAbsensi($koneksi, $data)
 {
     $id_siswa = $data['id_siswa'];
     $status = $data['status'];
     $keterangan = $data['keterangan'];
 
-    // Cek apakah sudah ada absensi untuk siswa ini hari ini
+    
     $cek = mysqli_query(
         $koneksi,
         "SELECT * FROM absensi 
@@ -51,14 +51,14 @@ function simpanAbsensi($koneksi, $data)
     );
 
     if (mysqli_num_rows($cek) > 0) {
-        // Update absensi yang sudah ada
+        
         $query = "UPDATE absensi SET 
                   status = '$status', 
                   keterangan = '$keterangan'
                   WHERE id_siswa = '$id_siswa' 
                   AND tanggal_absensi = CURDATE()";
     } else {
-        // Insert absensi baru
+        
         $query = "INSERT INTO absensi 
                   (id_siswa, tanggal_absensi, status, keterangan) 
                   VALUES 
@@ -68,7 +68,7 @@ function simpanAbsensi($koneksi, $data)
     return mysqli_query($koneksi, $query);
 }
 
-// Proses simpan absensi
+
 if (isset($_POST['simpan_absen'])) {
     $success_count = 0;
     foreach ($_POST['absensi'] as $id_siswa => $data) {
@@ -117,7 +117,7 @@ if (isset($_POST['simpan_absen'])) {
         <div class="container-fluid">
             <?= $message ?? '' ?>
 
-            <!-- Info Card -->
+           
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -135,7 +135,7 @@ if (isset($_POST['simpan_absen'])) {
                 </div>
             </div>
 
-            <!-- Form Absensi -->
+            
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0"><i class="bi bi-list-check"></i> Daftar Absensi Siswa</h5>
@@ -293,15 +293,15 @@ if (isset($_POST['simpan_absen'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Fungsi untuk update warna baris berdasarkan status
+        
         function updateRowColor(select) {
             const row = select.closest('tr');
             const status = select.value;
 
-            // Reset semua kelas warna
+            
             row.classList.remove('table-success', 'table-info', 'table-warning', 'table-danger');
 
-            // Tambahkan kelas warna berdasarkan status
+            
             switch (status) {
                 case 'H':
                     row.classList.add('table-success');
