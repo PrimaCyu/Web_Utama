@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'mpk') {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit();
 }
 
@@ -24,7 +24,7 @@ if (!$koneksi) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@ if (!$koneksi) {
     <nav>
         <a href="mpk_dashboard.php"><i class="bi bi-house"></i> Dashboard</a>
         <a href="mpk_history.php" class="active"><i class="bi bi-clock-history"></i> Histori</a>
-        <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        <a href="../logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
     </nav>
 
     <main class="fade-in">

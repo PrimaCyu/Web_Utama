@@ -1,0 +1,9 @@
+Tugas Penilaian Keahlian Prima
+Disini saya sedikit meluruskan ya bapak atas projek yang saya buat.
+
+Untuk Masalah Pertama Dimana Folder Users tidak , saya sudah memperbaiki nya 
+Folder users sendiri berisi file file yang ditujuankan untuk mpk mengabsen seperti mpk_dashboard dan mpk_history
+users sendiri adalah tempat untuk mpk melakukan absen sesuai dengan kelasnnya 
+
+file index hanya ada di folder admin karena bagian admin sendiri bersifat complex sedangkan dibagian user yang dikhusukan untuk bagian mengabsen tidak memerlukan file indexs karena langsung terintergrasi/koneksi dengan database 
+itu saja pak yang bisa saya jelaskan , kalo menurut bapak ada yang kurang atau membingungkan bisa langsung chat saya bapak , minta revisi 

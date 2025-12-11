@@ -7,7 +7,7 @@ if (isset($_SESSION['user_role'])) {
         header('Location: admin/index.php');
         exit();
     } elseif ($_SESSION['user_role'] === 'mpk') {
-        header('Location: mpk_dashboard.php');
+        header('Location: users/mpk_dashboard.php');
         exit();
     }
 }
